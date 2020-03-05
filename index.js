@@ -1,5 +1,5 @@
 $(function() {
-    $('#js-shopping-list-form').submit( event => {
+    $('#js-shopping-list-form').submit( function(event) {
         event.preventDefault();
         const itemName = $('#shopping-list-entry').val();
         $("ul").append(
@@ -19,14 +19,14 @@ $(function() {
 });
 
 function handleClicks() {
-    $('.shopping-item-toggle').on('click', event => {
+    $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
         event.preventDefault();
-        const selectName = $(event.currentTarget).parent().parent().find("span").first();
+        const selectName = $(this).parent().parent().find("span").first();
         selectName.toggleClass('shopping-item__checked');
     });
-    $('ul').on('click', '.shopping-item-delete', event => {
+    $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
         event.preventDefault();
-        $(event.currentTarget).parent().parent().remove();
+        $(this).parent().parent().remove();
     });
 }
 $(handleClicks);
